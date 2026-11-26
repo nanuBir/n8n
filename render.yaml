@@ -1,33 +1,30 @@
 services:
   - type: web
-    name: n8n-automation-app
-    env: docker
+    name: n8n-automation
+    runtime: docker
     plan: free
+    region: singapore
     dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
     envVars:
       - key: N8N_PORT
-        value: 5678
+        value: "5678"
       - key: N8N_PROTOCOL
         value: https
       - key: GENERIC_TIMEZONE
         value: Asia/Kolkata
-      - key: TZ
-        value: Asia/Kolkata
       - key: DB_TYPE
         value: postgresdb
-      - key: DB_POSTGRESDB_HOST
-        sync: false
-      - key: DB_POSTGRESDB_PORT
-        value: 5432
       - key: DB_POSTGRESDB_DATABASE
         value: postgres
+      - key: DB_POSTGRESDB_PORT
+        value: "6543"
+      - key: DB_POSTGRESDB_HOST
+        sync: false
       - key: DB_POSTGRESDB_USER
         sync: false
       - key: DB_POSTGRESDB_PASSWORD
         sync: false
-      - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
-        value: "false"
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
-      - key: WEBHOOK_URL
-        sync: false
+        
